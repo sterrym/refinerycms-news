@@ -24,6 +24,8 @@ class NewsItem < ActiveRecord::Base
   scope :latest, lambda { |*l_params|
     published.limit( l_params.first || 10)
   }
+  scope :kiosk, where("kiosk=?", true)
+  scope :non_kiosk, where("kiosk=?", false)
 
   # rejects any page that has not been translated to the current locale.
   scope :translated, lambda {
